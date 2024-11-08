@@ -1,34 +1,32 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import Users from "./components/Users";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [users, setUsers] = useState([
+    {
+      id: 1,
+      username: "Ashraful",
+    },
+    {
+      id: 2,
+      username: "Siam",
+    },
+  ]);
+
+  const handleDeleteUser = (id) => {
+    const filteredUsers = users.filter((user) => user.id != id);
+    setUsers(filteredUsers);
+  };
+
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h2>App</h2>
+        <Users users={users} handleDeleteUser={handleDeleteUser} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 }
 
 export default App;
+// CRD - Create, Read and Delete
