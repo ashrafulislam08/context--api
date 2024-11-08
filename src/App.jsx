@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Users from "./components/Users";
+import NewUser from "./components/NewUser";
 
 function App() {
   const [users, setUsers] = useState([
@@ -18,8 +19,13 @@ function App() {
     setUsers(filteredUsers);
   };
 
+  const handleAddNewUser = (newUser) => {
+    setUsers((prevUsers) => [...prevUsers, newUser]);
+  };
+
   return (
     <>
+      <NewUser handleAddNewUser={handleAddNewUser} />
       <div>
         <h2>App</h2>
         <Users users={users} handleDeleteUser={handleDeleteUser} />
